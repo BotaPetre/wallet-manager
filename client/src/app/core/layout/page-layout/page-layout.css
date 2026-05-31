@@ -1,2 +1,36 @@
-.main-canvas {
+.page-canvas {
+    display: grid;
+    grid-template-areas:
+        "sidebar header"
+        "sidebar data-content-area"
+        "sidebar footer";
+    grid-template-columns: 0.5fr 3fr;
+    gap: 3px;
+    background-color: blue;
+    padding: 5px;
+    min-height: 95vh;
+
+    /* Styles all direct child layout containers */
+    & > div {
+        background-color: white;
+        padding: 10px;
+    }
+
+    & div.header {
+        grid-area: header;
+        text-align: center;
+    }
+
+    & div.sidebar {
+        grid-area: sidebar;
+    }
+
+    & div.data-content-area {
+        grid-area: data-content-area;
+    }
+
+    & div.footer {
+        grid-area: footer;
+        text-align: center;
+    }
 }
