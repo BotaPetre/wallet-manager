@@ -1,10 +1,11 @@
 //server.js
 
-const express = require('express');
+import express from 'express';
+
 const app = express();
 
 // handling CORS
-app.use((req, res, next) => {
+app.use((req: any, res: any, next: any) => {
     res.header("Access-Control-Allow-Origin",
         "http://localhost:4200");
     res.header("Access-Control-Allow-Headers",
@@ -13,9 +14,9 @@ app.use((req, res, next) => {
 });
 
 // route for handling requests from the Angular client
-app.get('/api/message', (req, res) => {
+app.get('/api/message', (req: any, res: any) => {
     res.json({
-        message: 'Hello App is working from the Express server!'
+        message: 'Hello App is working from the Express server! Now with TS lol, very nice !'
     });
 });
 
