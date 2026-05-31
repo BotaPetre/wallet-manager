@@ -11,7 +11,6 @@ export class ApiService {
     getMessage() {
         const asd = this.http.get<{message: string}>(
             'http://localhost:3000/api/message');
-        debugger;
         return asd;
     }
 }
