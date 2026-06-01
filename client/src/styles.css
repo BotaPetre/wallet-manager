@@ -1,1 +1,15 @@
-/* You can add global styles to this file, and also import other style files */
+/* Includes padding and borders in total width/height to prevent layout breaking */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Enforce an unyielding 100% viewport limitation on the core layout tree */
+html, body, app-root {
+  margin: 0;
+  padding: 0;
+  height: 100dvh;
+}
+
+app-root {
+  display: block;
+}

@@ -1,16 +1,27 @@
+/* page-layout.component.css */
+:host {
+  display: block;
+  height: 100%;
+} 
+
 .page-canvas {
     display: grid;
+    height: 100%; /* Spans exactly 100% of the locked viewport */
+    
     grid-template-areas:
         "sidebar header"
         "sidebar data-content-area"
         "sidebar footer";
-    grid-template-columns: 0.5fr 3fr;
+    
+    grid-template-columns: 250px 1fr; /* Avoid fr for sidebars; use exact pixels */
+    
+    /* CRUCIAL: Header/Footer shrink to content, main area fills remaining space */
+    grid-template-rows: auto 1fr auto; 
+    
     gap: 3px;
     background-color: blue;
     padding: 5px;
-    min-height: 95vh;
 
-    /* Styles all direct child layout containers */
     & > div {
         background-color: white;
         padding: 10px;
@@ -27,6 +38,10 @@
 
     & div.data-content-area {
         grid-area: data-content-area;
+        
+        /* CRUCIAL: Keeps layout from expanding for large lists */
+        min-height: 0;   
+        overflow-y: auto; /* Scrollbar only appears inside the transactions area */
     }
 
     & div.footer {
