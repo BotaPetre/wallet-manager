@@ -1,1 +1,53 @@
-<p>add-transaction works!</p>
+<!-- 
+<div>
+    <input type="string" [formField]="trForm.createDate">
+    <input type="number" [formField]="trForm.amount">
+    <input type="string" [formField]="trForm.category">
+    <input type="string" [formField]="trForm.note">
+
+    <br>
+    <button nz-button nzType="primary" (click)="showForm()">Primary</button>
+</div> -->
+
+<div>
+    <form nz-form nzLayout="vertical" (submit)="submitNewTransaction($event)">
+        <nz-form-item>
+            <nz-form-label nzFor="tr-date">Date</nz-form-label>
+            <nz-form-control>
+                <input nz-input id="tr-date" type="text" [formField]="trForm.createDate" />
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+            <nz-form-label nzFor="tr-amount">Amount</nz-form-label>
+            <nz-form-control>
+                <input nz-input id="tr-amount" type="number" [formField]="trForm.amount" />
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+            <nz-form-label nzFor="tr-category">Category</nz-form-label>
+            <nz-form-control>
+                <input nz-input id="tr-category" type="text" [formField]="trForm.category" />
+            @if (trForm.category().touched() && trForm.category().invalid()) {
+            <ul class="error-list">
+                @for (error of trForm.category().errors(); track error) {
+                <li>{{ error.message }}</li>
+                }
+            </ul>
+            }
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+            <nz-form-label nzFor="tr-note">Note</nz-form-label>
+            <nz-form-control>
+                <input nz-input id="tr-note" type="text" [formField]="trForm.note" />
+            </nz-form-control>
+        </nz-form-item>
+
+        <div>
+            <button htmlType="submit" nz-button nzType="primary">Save</button>
+        </div>
+    </form>
+</div>
