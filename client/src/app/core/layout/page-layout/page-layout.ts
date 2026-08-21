@@ -8,7 +8,6 @@ import { Footer } from '../footer/footer';
   selector: 'app-page-layout',
   imports: [RouterOutlet, Sidebar, Header, Footer],
   templateUrl: './page-layout.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './page-layout.css',
 })
 export class PageLayout {

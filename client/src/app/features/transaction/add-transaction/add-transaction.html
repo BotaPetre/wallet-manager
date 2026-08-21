@@ -1,20 +1,10 @@
-<!-- 
 <div>
-    <input type="string" [formField]="trForm.createDate">
-    <input type="number" [formField]="trForm.amount">
-    <input type="string" [formField]="trForm.category">
-    <input type="string" [formField]="trForm.note">
-
-    <br>
-    <button nz-button nzType="primary" (click)="showForm()">Primary</button>
-</div> -->
-
-<div>
-    <form nz-form nzLayout="vertical" (submit)="submitNewTransaction($event)">
+    <form nz-form nzLayout="vertical" novalidate (submit)="submitNewTransaction($event)">
         <nz-form-item>
             <nz-form-label nzFor="tr-date">Date</nz-form-label>
             <nz-form-control>
                 <input nz-input id="tr-date" type="text" [formField]="trForm.createDate" />
+                <signal-form-error [field]="trForm.createDate" />
             </nz-form-control>
         </nz-form-item>
 
@@ -22,20 +12,14 @@
             <nz-form-label nzFor="tr-amount">Amount</nz-form-label>
             <nz-form-control>
                 <input nz-input id="tr-amount" type="number" [formField]="trForm.amount" />
+                <signal-form-error [field]="trForm.amount" />
             </nz-form-control>
         </nz-form-item>
-
         <nz-form-item>
             <nz-form-label nzFor="tr-category">Category</nz-form-label>
             <nz-form-control>
                 <input nz-input id="tr-category" type="text" [formField]="trForm.category" />
-            @if (trForm.category().touched() && trForm.category().invalid()) {
-            <ul class="error-list">
-                @for (error of trForm.category().errors(); track error) {
-                <li>{{ error.message }}</li>
-                }
-            </ul>
-            }
+                <signal-form-error [field]="trForm.category" />
             </nz-form-control>
         </nz-form-item>
 

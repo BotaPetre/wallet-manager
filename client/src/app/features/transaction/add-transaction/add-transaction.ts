@@ -1,7 +1,8 @@
 import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
-import { form, FormField, required, minLength, maxLength} from '@angular/forms/signals';
+import { form, FormField, required, minLength, maxLength, min} from '@angular/forms/signals';
 import { NzButtonModule } from 'ng-zorro-antd/button';
-import { NzFormItemComponent, NzFormLabelComponent, NzFormModule } from 'ng-zorro-antd/form';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { SignalFormError } from '../../../shared/components/signal-form-error/signal-form-error';
 
 interface IAddTransaction {
   createDate: string;
@@ -13,9 +14,8 @@ interface IAddTransaction {
 
 @Component({
   selector: 'add-transaction',
-  imports: [FormField, NzButtonModule, NzFormModule],
+  imports: [FormField, NzButtonModule, NzFormModule, SignalFormError],
   templateUrl: './add-transaction.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './add-transaction.css',
 })
 export class AddTransaction {
@@ -31,6 +31,7 @@ export class AddTransaction {
   trForm = form(this.addTransactionModel, (schemaPath) => {
     required(schemaPath.createDate, {message: 'Date is required'});
     required(schemaPath.amount, {message: 'Amount is required'});
+    min(schemaPath.amount, 0, { message: 'Amount cannot be a negative number' })
     required(schemaPath.currency, {message: 'Currency is required'});
     required(schemaPath.category, {message: 'Category is required'});
     minLength(schemaPath.category, 3, { message: 'Category must be at least 3 characters' });
