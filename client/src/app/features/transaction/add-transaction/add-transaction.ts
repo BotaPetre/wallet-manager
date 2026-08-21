@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
 import { form, FormField, required, minLength, maxLength} from '@angular/forms/signals';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzFormItemComponent, NzFormLabelComponent, NzFormModule } from 'ng-zorro-antd/form';
@@ -15,6 +15,7 @@ interface IAddTransaction {
   selector: 'add-transaction',
   imports: [FormField, NzButtonModule, NzFormModule],
   templateUrl: './add-transaction.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './add-transaction.css',
 })
 export class AddTransaction {
