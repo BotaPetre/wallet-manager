@@ -1,0 +1,32 @@
+:root {
+  --app-primary: #007aff;
+  --app-primary-soft: rgba(0, 122, 255, 0.1);
+
+  --app-background: #f7f7f9;
+  --app-surface: #ffffff;
+
+  --app-input-background: #f4f4f7;
+  --app-input-background-focus: #ffffff;
+
+  --app-border: #e0e0e0;
+  --app-border-hover: #d0d0d0;
+
+  --app-text: #111111;
+  --app-text-secondary: #6b6b73;
+
+  --app-radius: 12px;
+  --app-card-radius: 8px;
+
+  --app-label-size: 15px;
+  --app-input-size: 16px;
+  --app-button-size: 18px;
+
+  --app-input-height: 40px;
+  --app-button-height: 56px;
+
+  --app-card-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.05);
+
+  --app-primary-shadow:
+    0 8px 20px rgba(24, 144, 255, 0.3);
+}
