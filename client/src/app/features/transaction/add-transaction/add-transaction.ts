@@ -3,6 +3,7 @@ import { form, FormField, required, minLength, maxLength, min} from '@angular/fo
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { SignalFormError } from '../../../shared/components/signal-form-error/signal-form-error';
+import { NzCardModule } from 'ng-zorro-antd/card';
 
 interface IAddTransaction {
   createDate: string;
@@ -14,7 +15,7 @@ interface IAddTransaction {
 
 @Component({
   selector: 'add-transaction',
-  imports: [FormField, NzButtonModule, NzFormModule, SignalFormError],
+  imports: [FormField, NzButtonModule, NzFormModule, NzCardModule,SignalFormError],
   templateUrl: './add-transaction.html',
   styleUrl: './add-transaction.css',
 })
