@@ -1,5 +1,11 @@
+/* Target the official Ng-Zorro label element */
+nz-form-label label, 
+.ant-form-item-label label {
+  font-weight: bold;
+}
+
 /* =========================================================
-   NG-ZORRO INPUTS
+   NG-ZORRO INPUT
    ========================================================= */
 
 [nz-input] {
@@ -40,3 +46,62 @@
 [nz-input]:hover:not(:focus) {
   border-color: var(--app-border-hover);
 }
+
+
+/* =========================================================
+   NG-ZORRO DATE PICKER
+   ========================================================= */
+
+nz-date-picker.ant-picker {
+  display: flex;
+  width: 100%;
+  height: var(--app-input-height);
+  box-sizing: border-box;
+
+  background-color: var(--app-input-background);
+  border: 1px solid var(--app-border);
+  border-radius: var(--app-radius);
+
+  font-size: var(--app-input-size);
+
+  transition:
+    border-color 0.2s ease-in-out,
+    background-color 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out;
+}
+
+/* Hover */
+nz-date-picker.ant-picker:hover {
+  border-color: var(--app-border-hover);
+}
+
+/* Focus */
+nz-date-picker.ant-picker-focused {
+  background-color: var(--app-input-background-focus);
+  border-color: var(--app-primary);
+  box-shadow: 0 0 0 4px var(--app-primary-soft);
+}
+
+/* Input inside date picker */
+nz-date-picker.ant-picker .ant-picker-input > input {
+  background: transparent;
+  font-size: var(--app-input-size);
+}
+
+/* Calendar icon */
+nz-date-picker.ant-picker .ant-picker-suffix {
+  color: var(--app-border-hover);
+}
+
+/* Clear icon */
+nz-date-picker.ant-picker .ant-picker-clear {
+  background: var(--app-input-background);
+}
+
+/* Disabled */
+nz-date-picker.ant-picker-disabled {
+  background-color: var(--app-input-background);
+  border-color: var(--app-border);
+  opacity: 0.6;
+}
+

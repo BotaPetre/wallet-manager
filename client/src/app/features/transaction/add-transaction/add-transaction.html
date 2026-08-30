@@ -1,10 +1,11 @@
 <div class="form-container">
     <nz-card nzTitle="Transaction">
-        <form nz-form nzLayout="vertical" novalidate (submit)="submitNewTransaction($event)">
+        <form nz-form nzLayout="vertical" novalidate autocomplete="off" (submit)="submitNewTransaction($event)">
             <nz-form-item>
                 <nz-form-label nzFor="tr-date">Date</nz-form-label>
                 <nz-form-control>
-                    <input nz-input id="tr-date" type="text" [formField]="trForm.createDate" />
+                    <!-- <input nz-input id="tr-date" type="text" [formField]="trForm.createDate" /> -->
+                     <nz-date-picker nzFormat="dd/MM/YYYY"  nzSize="large" [formField]="trForm.createDate"/>
                     <signal-form-error [field]="trForm.createDate" />
                 </nz-form-control>
             </nz-form-item>

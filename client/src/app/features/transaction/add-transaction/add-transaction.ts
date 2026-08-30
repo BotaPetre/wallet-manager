@@ -4,9 +4,10 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { SignalFormError } from '../../../shared/components/signal-form-error/signal-form-error';
 import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 
 interface IAddTransaction {
-  createDate: string;
+  createDate: Date;
   amount: number;
   currency: string;
   category: string;
@@ -15,14 +16,14 @@ interface IAddTransaction {
 
 @Component({
   selector: 'add-transaction',
-  imports: [FormField, NzButtonModule, NzFormModule, NzCardModule,SignalFormError],
+  imports: [FormField, NzButtonModule, NzFormModule, NzCardModule, NzDatePickerModule, SignalFormError],
   templateUrl: './add-transaction.html',
   styleUrl: './add-transaction.css',
 })
 export class AddTransaction {
 
   private addTransactionModel = signal<IAddTransaction>({
-    createDate: '',
+    createDate: new Date(),
     amount: 0,
     currency: 'RON',
     category: '',
