@@ -1,7 +1,8 @@
 import express from 'express';
 import 'dotenv/config';
 import { drizzle } from 'drizzle-orm/node-postgres';
-import { usersTable } from './src/db/schema.ts';
+import { transactionsTable } from './src/db/schema.ts';
+import { sql } from 'drizzle-orm';
 
 const app = express();
 
@@ -17,6 +18,9 @@ app.use((req: any, res: any, next: any) => {
     next();
 });
 
+// Mandatory, parse incoming JSON requests
+app.use(express.json());
+
 // route for handling requests from the Angular client
 // app.get('/api/message', async (req: any, res: any) => {
 
@@ -29,14 +33,34 @@ app.use((req: any, res: any, next: any) => {
 // });
 
 app.post('/api/create-transaction', async (req: any, res: any) => {
+  try {
+    const transaction = await db
+      .insert(transactionsTable)
+      .values({
+        // id populated by DB
+        createdAt: new Date(req.body.createdAt),
+        currencyCode: req.body.currencyCode,
+        note: req.body.note,
+        createdBy: crypto.randomUUID(),
+        categoryId: crypto.randomUUID(),
+        workspaceId: crypto.randomUUID(),
+      })
+      .returning();
 
-   console.log('Created transaction');
-
-    res.json({
-        message: 'test',
-    });
+    res.json(transaction[0]);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Failed to create transaction' });
+  }
 });
 
-app.listen(3000, () => {
+app.listen(3000, async () => {
     console.log('Server listening on port 3000');
+
+    try {
+        await db.execute(sql`SELECT 1`);
+        console.log('Connected to PostgreSQL');
+    } catch (error) {
+        console.error('Database connection failed:', error);
+    }
 });

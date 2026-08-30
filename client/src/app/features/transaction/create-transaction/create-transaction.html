@@ -4,9 +4,8 @@
             <nz-form-item>
                 <nz-form-label nzFor="tr-date">Date</nz-form-label>
                 <nz-form-control>
-                    <!-- <input nz-input id="tr-date" type="text" [formField]="trForm.createDate" /> -->
-                     <nz-date-picker nzFormat="dd/MM/YYYY"  nzSize="large" [formField]="trForm.createDate"/>
-                    <signal-form-error [field]="trForm.createDate" />
+                     <nz-date-picker nzFormat="dd/MM/YYYY"  nzSize="large" [formField]="trForm.createdAt"/>
+                    <signal-form-error [field]="trForm.createdAt" />
                 </nz-form-control>
             </nz-form-item>
 

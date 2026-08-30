@@ -8,17 +8,17 @@ import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { ApiService } from '../../../shared/services/api.service';
 
 interface ICreateTransaction {
-  createDate: Date;
+  createdAt: Date;
   amount: number | null;
-  currency: string;
+  currencyCode: string;
   category: string;
   note: string;
 }
 
 const defaultTransaction: ICreateTransaction = {
-  createDate: new Date(),
+  createdAt: new Date(),
   amount: null,
-  currency: 'RON',
+  currencyCode: 'RON',
   category: '',
   note: '',
 }
@@ -35,11 +35,11 @@ export class CreateTransaction {
   private createTransactionModel = signal<ICreateTransaction>({ ...defaultTransaction });
 
   trForm = form(this.createTransactionModel, (schemaPath) => {
-    required(schemaPath.createDate, {message: 'Date is required'});
+    required(schemaPath.createdAt, {message: 'Date is required'});
     required(schemaPath.amount, {message: 'Amount is required'});
     min(schemaPath.amount, 0, { message: 'Amount cannot be a negative number' })
-    required(schemaPath.currency, {message: 'Currency is required'});
-    minLength(schemaPath.currency, 3, { message: 'Currency must be at least 3 characters' });
+    required(schemaPath.currencyCode, {message: 'Currency is required'});
+    minLength(schemaPath.currencyCode, 3, { message: 'Currency must be at least 3 characters' });
     required(schemaPath.category, {message: 'Category is required'});
     minLength(schemaPath.category, 3, { message: 'Category must be at least 3 characters' });
     maxLength(schemaPath.category, 256, { message: 'Category can have maximum 256 characters' });
