@@ -18,13 +18,22 @@ app.use((req: any, res: any, next: any) => {
 });
 
 // route for handling requests from the Angular client
-app.get('/api/message', async (req: any, res: any) => {
+// app.get('/api/message', async (req: any, res: any) => {
 
-    const allUsers = await db.select().from(usersTable);
+//     const allUsers = await db.select().from(usersTable);
+
+//     res.json({
+//         message: 'Hello App is working from the Express server! Now with TS lol, very nice !',
+//         users: allUsers
+//     });
+// });
+
+app.post('/api/create-transaction', async (req: any, res: any) => {
+
+   console.log('Created transaction');
 
     res.json({
-        message: 'Hello App is working from the Express server! Now with TS lol, very nice !',
-        users: allUsers
+        message: 'test',
     });
 });
 

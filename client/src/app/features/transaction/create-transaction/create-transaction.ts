@@ -5,45 +5,60 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { SignalFormError } from '../../../shared/components/signal-form-error/signal-form-error';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { ApiService } from '../../../shared/services/api.service';
 
-interface IAddTransaction {
+interface ICreateTransaction {
   createDate: Date;
-  amount: number;
+  amount: number | null;
   currency: string;
   category: string;
   note: string;
 }
 
+const defaultTransaction: ICreateTransaction = {
+  createDate: new Date(),
+  amount: null,
+  currency: 'RON',
+  category: '',
+  note: '',
+}
+
 @Component({
-  selector: 'add-transaction',
+  selector: 'create-transaction',
   imports: [FormField, NzButtonModule, NzFormModule, NzCardModule, NzDatePickerModule, SignalFormError],
-  templateUrl: './add-transaction.html',
-  styleUrl: './add-transaction.css',
+  templateUrl: './create-transaction.html',
+  styleUrl: './create-transaction.css',
 })
-export class AddTransaction {
+export class CreateTransaction {
+  constructor (private apiService: ApiService) {}  
 
-  private addTransactionModel = signal<IAddTransaction>({
-    createDate: new Date(),
-    amount: 0,
-    currency: 'RON',
-    category: '',
-    note: '',
-  });
+  private createTransactionModel = signal<ICreateTransaction>({ ...defaultTransaction });
 
-  trForm = form(this.addTransactionModel, (schemaPath) => {
+  trForm = form(this.createTransactionModel, (schemaPath) => {
     required(schemaPath.createDate, {message: 'Date is required'});
     required(schemaPath.amount, {message: 'Amount is required'});
     min(schemaPath.amount, 0, { message: 'Amount cannot be a negative number' })
     required(schemaPath.currency, {message: 'Currency is required'});
+    minLength(schemaPath.currency, 3, { message: 'Currency must be at least 3 characters' });
     required(schemaPath.category, {message: 'Category is required'});
     minLength(schemaPath.category, 3, { message: 'Category must be at least 3 characters' });
     maxLength(schemaPath.category, 256, { message: 'Category can have maximum 256 characters' });
   });
 
-  submitNewTransaction(event: Event) {
+  createTransaction(event: Event) {
     event.preventDefault();
-     
-    console.log(this.trForm().value())
+
+    const transaction = this.trForm().value();
+
+    this.apiService.createTransaction(transaction).subscribe({
+      next: (res) => {
+        console.log('Tr added', res)
+
+        // Reset form
+        this.createTransactionModel.set({ ...defaultTransaction })
+        this.trForm().reset();
+      },
+    });
   }
 
 }

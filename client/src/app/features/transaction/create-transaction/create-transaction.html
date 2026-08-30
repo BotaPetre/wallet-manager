@@ -1,6 +1,6 @@
 <div class="form-container">
     <nz-card nzTitle="Transaction">
-        <form nz-form nzLayout="vertical" novalidate autocomplete="off" (submit)="submitNewTransaction($event)">
+        <form nz-form nzLayout="vertical" novalidate autocomplete="off" (submit)="createTransaction($event)">
             <nz-form-item>
                 <nz-form-label nzFor="tr-date">Date</nz-form-label>
                 <nz-form-control>
@@ -13,7 +13,7 @@
             <nz-form-item>
                 <nz-form-label nzFor="tr-amount">Amount</nz-form-label>
                 <nz-form-control>
-                    <input nz-input id="tr-amount" type="number" [formField]="trForm.amount" />
+                    <input nz-input id="tr-amount" type="text" inputmode="numeric" [formField]="trForm.amount" />
                     <signal-form-error [field]="trForm.amount" />
                 </nz-form-control>
             </nz-form-item>
