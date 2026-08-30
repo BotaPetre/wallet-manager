@@ -6,7 +6,6 @@ import { AddTransaction } from "../add-transaction/add-transaction";
   selector: 'transactions-page',
   imports: [NzButtonModule, AddTransaction],
   templateUrl: './transactions-page.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './transactions-page.css',
 })
 export class TransactionsPage {

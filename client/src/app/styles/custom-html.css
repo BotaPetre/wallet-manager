@@ -1,0 +1,45 @@
+@import './theme-variables.css';
+
+html,
+body,
+app-root {
+  margin: 0;
+  padding: 0;
+  height: 100dvh;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  background: var(--app-background);
+  color: var(--app-text);
+
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+app-root {
+  display: block;
+}
+
+/* Hide number input + - icons */
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
