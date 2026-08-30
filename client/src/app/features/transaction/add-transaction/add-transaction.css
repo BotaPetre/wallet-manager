@@ -1,0 +1,18 @@
+:host {
+  display: block;
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.transaction-card {
+  width: min(100%, 420px);
+}
+
+.save-button {
+  font-weight: 700;
+  box-shadow: var(--app-primary-shadow);
+}

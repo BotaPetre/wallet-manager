@@ -1,8 +1,12 @@
-//server.js
-
 import express from 'express';
+import 'dotenv/config';
+import { drizzle } from 'drizzle-orm/node-postgres';
+import { usersTable } from './src/db/schema.ts';
 
 const app = express();
+
+// DB connection
+const db = drizzle(process.env.DATABASE_URL!);
 
 // handling CORS
 app.use((req: any, res: any, next: any) => {
@@ -14,9 +18,13 @@ app.use((req: any, res: any, next: any) => {
 });
 
 // route for handling requests from the Angular client
-app.get('/api/message', (req: any, res: any) => {
+app.get('/api/message', async (req: any, res: any) => {
+
+    const allUsers = await db.select().from(usersTable);
+
     res.json({
-        message: 'Hello App is working from the Express server! Now with TS lol, very nice !'
+        message: 'Hello App is working from the Express server! Now with TS lol, very nice !',
+        users: allUsers
     });
 });
 

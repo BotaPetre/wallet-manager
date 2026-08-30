@@ -4,7 +4,7 @@ import { PageLayout } from './core/layout/page-layout/page-layout';
 export const routes: Routes = [
     // Public 
     {
-        path: '',
+        path: 'login',
         loadComponent: () => import('./core/auth/login-page/login-page').then(p => p.LoginPage)
     },
     {
@@ -19,7 +19,7 @@ export const routes: Routes = [
         // TODO: add canActivate authGuard
         children: [
             {
-                path: 'transactions',
+                path: '',
                 loadChildren: () => import('./features/transaction/transactions.routes').then(r => r.transactionRoutes)
             }
         ]

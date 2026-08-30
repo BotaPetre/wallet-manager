@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-  selector: 'app-login-page',
+  selector: 'login-page',
   imports: [],
   templateUrl: './login-page.html',
   styleUrl: './login-page.css',
