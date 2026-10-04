@@ -3,6 +3,11 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideNzDateFnsAdapter } from 'ng-zorro-antd/core/time';
 import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
+import { NzConfig, provideNzConfig } from 'ng-zorro-antd/core/config';
+
+const ngZorroConfig: NzConfig = {
+  message: { nzTop: 10, nzMaxStack: 3 },
+}
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -12,5 +17,6 @@ export const appConfig: ApplicationConfig = {
       provide: NZ_I18N,
       useValue: en_US,
     },
+    provideNzConfig(ngZorroConfig)
   ]
 };
