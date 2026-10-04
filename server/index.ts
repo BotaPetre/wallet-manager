@@ -41,6 +41,7 @@ app.post('/api/create-transaction', async (req: any, res: any) => {
         createdAt: new Date(req.body.createdAt),
         currencyCode: req.body.currencyCode,
         note: req.body.note,
+        amount: req.body.amount,
         createdBy: crypto.randomUUID(),
         categoryId: crypto.randomUUID(),
         workspaceId: crypto.randomUUID(),

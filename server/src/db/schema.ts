@@ -1,4 +1,4 @@
-import { char, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
+import { char, pgTable, text, timestamp, uuid, numeric } from "drizzle-orm/pg-core";
 
 export const transactionsTable = pgTable("transactions", {
   id: uuid("id").primaryKey().defaultRandom(), 
@@ -16,6 +16,8 @@ export const transactionsTable = pgTable("transactions", {
   }).notNull(),
 
   note: text(),
+
+  amount: numeric({precision: 12, scale: 2}),
 
   createdBy: uuid("created_by").notNull(),
 
