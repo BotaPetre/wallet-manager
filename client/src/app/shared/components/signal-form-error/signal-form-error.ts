@@ -19,7 +19,7 @@ import { FieldTree } from '@angular/forms/signals';
 
 export class SignalFormError {
   // Received data
-  field = input.required<FieldTree<string | number | Date>>();
+  field = input.required<FieldTree<string | number | Date | null>>();
 
   // Un-wrap the double signal
   formState = computed(() => this.field()());
