@@ -1,4 +1,4 @@
-import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
+import { Component, signal, inject } from '@angular/core';
 import { form, FormField, required, minLength, maxLength, min} from '@angular/forms/signals';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzFormModule } from 'ng-zorro-antd/form';
@@ -6,6 +6,7 @@ import { SignalFormError } from '../../../shared/components/signal-form-error/si
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { ApiService } from '../../../shared/services/api.service';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 interface ICreateTransaction {
   createdAt: Date;
@@ -30,8 +31,8 @@ const defaultTransaction: ICreateTransaction = {
   styleUrl: './create-transaction.css',
 })
 export class CreateTransaction {
-  constructor (private apiService: ApiService) {}  
-
+  private apiService = inject(ApiService);
+  private readonly message = inject (NzMessageService);
   private createTransactionModel = signal<ICreateTransaction>({ ...defaultTransaction });
 
   trForm = form(this.createTransactionModel, (schemaPath) => {
@@ -52,12 +53,18 @@ export class CreateTransaction {
 
     this.apiService.createTransaction(transaction).subscribe({
       next: (res) => {
-        console.log('Tr added', res)
+        this.message.success(`Transaction saved`)
 
         // Reset form
         this.createTransactionModel.set({ ...defaultTransaction })
         this.trForm().reset();
       },
+      error: (err) => {
+        // TODO: log this const errMsg = err?.error?.message;
+        this.message.error(`Failed to save transaction`, {
+          nzClass: 'app-message app-message-error'
+        });
+      }
     });
   }
 
